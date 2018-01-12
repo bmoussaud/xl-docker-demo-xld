@@ -24,6 +24,16 @@ RUN /opt/xld/server/bin/run.sh -setup -reinitialize -force && \
 COPY resources/supervisord.conf /etc/supervisord.conf
 COPY resources/xld.conf /etc/supervisor/conf.d/xld.conf
 
+RUN rm -rf /opt/xld/server/plugins/xld-kubernetes-*
+ADD plugins/xld-kubernetes-plugin-7.5.1-SNAPSHOT.xldp  /opt/xld/server/plugins
+
+RUN addgroup xl && adduser -D -H  -G xl xl
+
+RUN chown -R xl:xl /opt/xld
+RUN chmod -R 777 /opt/xld
+USER xl
+WORKDIR /opt/xld
+
 CMD ["/usr/bin/supervisord"]
 
 EXPOSE 4516
