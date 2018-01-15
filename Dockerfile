@@ -1,6 +1,6 @@
 FROM openjdk:jre-alpine
 MAINTAINER XebiaLabs "info@xebialabs.com"
-
+RUN mkdir -p /repository
 RUN apk --no-cache add supervisor wget
 
 RUN wget --progress=dot:giga -O /tmp/xl-deploy-trial-server.zip https://dist.xebialabs.com/xl-deploy-trial-server.zip && \
