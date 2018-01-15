@@ -16,6 +16,7 @@ RUN wget --progress=dot:giga -O /tmp/xl-deploy-trial-cli.zip https://dist.xebial
     rm -rf /tmp/xl-deploy-trial-cli.zip
 
 COPY resources/deployit.conf /opt/xld/server/conf/deployit.conf
+RUN ln -fs /opt/xld/server/repository /repository
 
 RUN /opt/xld/server/bin/run.sh -setup -reinitialize -force && \
     ln -fs /license/deployit-license.lic /opt/xld/server/conf/deployit-license.lic && \
@@ -26,6 +27,7 @@ COPY resources/xld.conf /etc/supervisor/conf.d/xld.conf
 
 RUN rm -rf /opt/xld/server/plugins/xld-kubernetes-*
 ADD plugins/xld-kubernetes-plugin-7.5.1-SNAPSHOT.xldp  /opt/xld/server/plugins
+ADD plugins/xld-smoke-test-plugin-1.0.4.xldp  /opt/xld/server/plugins
 
 RUN addgroup xl && adduser -D -H  -G xl xl
 
