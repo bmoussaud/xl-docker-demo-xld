@@ -30,6 +30,8 @@ ADD plugins/xld-kubernetes-plugin-7.5.1-SNAPSHOT.xldp  /opt/xld/server/plugins
 ADD plugins/xld-smoke-test-plugin-1.0.4.xldp  /opt/xld/server/plugins
 ADD plugins/kubernetes-custom-rules-1.0.jar  /opt/xld/server/plugins
 ADD ext /opt/xld/server/ext
+COPY resources/planner.conf /opt/xld/server/conf/planner.conf
+COPY resources/xld-wrapper-linux.conf /opt/xld/server/conf/resources/xld-wrapper-linux.conf
 
 RUN addgroup xl && adduser -D -H  -G xl xl
 
