@@ -35,6 +35,8 @@ COPY resources/xld-wrapper-linux.conf /opt/xld/server/conf/resources/xld-wrapper
 
 RUN addgroup xl && adduser -D -H  -G xl xl
 
+RUN chown -R xl:xl /usr/bin
+RUN chmod -R 777 /usr/bin
 RUN chown -R xl:xl /opt/xld
 RUN chmod -R 777 /opt/xld
 USER xl
